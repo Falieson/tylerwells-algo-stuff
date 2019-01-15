@@ -8,8 +8,10 @@ A personal repo to document different approaches to algorithm questions
 5) [Median of Two Sorted Arrays (LeetCode)](https://github.com/therealtylerwells/algo-stuff#median-of-two-sorted-arrays)
 6) [Reverse Integer (LeetCode)](https://github.com/therealtylerwells/algo-stuff#reverse-integer)
 7) [Palindrome Number (LeetCode)](https://github.com/therealtylerwells/algo-stuff#palindrome-number)
-7) [Remove Element (LeetCode)](https://github.com/therealtylerwells/algo-stuff#remove-element)
-
+8) [Remove Element (LeetCode)](https://github.com/therealtylerwells/algo-stuff#remove-element)
+9) [Anagram Detection](https://github.com/therealtylerwells/algo-stuff#anagram-detection)
+10) [Palindrome String Detection](https://github.com/therealtylerwells/algo-stuff#palindrome-string-detection)
+11) [Get nth Fibonacci number](https://github.com/therealtylerwells/algo-stuff#get-nth-fibonacci-number)
 
 ## Remove Duplicates
 Assume we need to remove any duplicate characters or words from a string
@@ -129,4 +131,54 @@ const removeElement = (nums, val) => {
         }
     }
 };
+```
+
+## Anagram Detection
+Given two strings, return true if they are anagrams, false if not
+
+```js
+// Ensure both strings are lowercase ->  split, sort, and join the strings -> compare them.
+
+const detectAnagrams = (stringOne, stringTwo) => {
+  let a = stringOne.toLowerCase();
+  let b = stringTwo.toLowerCase();
+  
+  a = a.split('').sort().join('');
+  b = b.split('').sort().join('');
+  
+  return a == b;
+}
+```
+
+## Palindrome String Detection
+Given a string, return true if it is a palindrome, false if not
+
+```js
+// Use Regex to replace any non-letter character with "", change to lowerCase, and 
+// compare string vs reversed string
+
+const palindromeDetection = (string) => {
+  const letters = string.toLowerCase().replace(/\s/g, "");
+  const reversed = letters.split('').reverse().join('');
+  return letters == reversed;
+}
+```
+
+## Get nth Fibonacci number
+Given an input nth Fibonacci number, return the nth number in the Fibonacci sequence
+(In the Fibonacci sequence, each number is the sum of the two preceding ones, starting from 0 and 1)
+
+```js
+const fibonacci = (n) => {
+  let fibo = [0, 1];
+  if (n <= 2) return 1;
+  for (i = 2; i <=n; i++) {
+    fibo[i] = fibo[i - 1] + fibo[i-2];
+  }
+  return fibo[n];
+}
+
+// fibonacci(10) returns 55
+// fibonacci(12) returns 144
+// fibonacci(2) returns 1
 ```
