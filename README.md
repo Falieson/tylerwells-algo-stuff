@@ -8,6 +8,7 @@ A personal repo to document different approaches to algorithm questions
 5) [Median of Two Sorted Arrays (LeetCode)](https://github.com/therealtylerwells/algo-stuff#median-of-two-sorted-arrays)
 6) [Reverse Integer (LeetCode)](https://github.com/therealtylerwells/algo-stuff#reverse-integer)
 7) [Palindrome Number (LeetCode)](https://github.com/therealtylerwells/algo-stuff#palindrome-number)
+7) [Remove Element (LeetCode)](https://github.com/therealtylerwells/algo-stuff#remove-element)
 
 
 ## Remove Duplicates
@@ -106,10 +107,26 @@ const reverse = (x) => {
 };
 ```
 ## Palindrome Number
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+
 ```js
 // Check if number/string is the same backwards as it is forwards
 
 const isPalindrome = (x) => {
     return x == x.toString().split('').reverse().join('');
+};
+```
+## Remove Element
+Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+
+```js
+// Loop through array. If we encounter val, then splice that index from the array.
+
+const removeElement = (nums, val) => {
+    for(var i = nums.length - 1; i >= 0; i--){
+        if(nums[i] === val){
+            nums.splice(i, 1);
+        }
+    }
 };
 ```
