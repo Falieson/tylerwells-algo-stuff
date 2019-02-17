@@ -12,6 +12,7 @@ A personal repo to document different approaches to algorithm questions
 9) [Anagram Detection](https://github.com/therealtylerwells/algo-stuff#anagram-detection)
 10) [Palindrome String Detection](https://github.com/therealtylerwells/algo-stuff#palindrome-string-detection)
 11) [Get nth Fibonacci number](https://github.com/therealtylerwells/algo-stuff#get-nth-fibonacci-number)
+12) [Squared second array checker](https://github.com/therealtylerwells/algo-stuff#squared-second-array-checker)
 
 ## Remove Duplicates
 Assume we need to remove any duplicate characters or words from a string
@@ -181,4 +182,45 @@ const fibonacci = (n) => {
 // fibonacci(10) returns 55
 // fibonacci(12) returns 144
 // fibonacci(2) returns 1
+```
+
+## Squared second array checker
+Given two arrays, check if array 2 contains all values of array 1 squared 
+
+Simple O(n^2)
+
+```js
+const squareChecker = (arr1, arr2) => {
+	if (arr1.length !== arr2.length) return false
+  for (let value of arr1) {
+			let correctIndex = arr2.indexOf(value * value)
+      if (correctIndex == -1) return false
+      arr2.splice(correctIndex, 1)
+    }
+    return true;
+  }
+```
+
+Better O(n)
+
+```js
+const squareChecker = (arr1, arr2) => {
+	const frequencies1 = {}
+  const frequencies2 = {}
+  for(let val of arr1) {
+  	frequencies1[val] ? frequencies1[val]++ : frequencies1[val] = 1     
+  }
+  for (let val of arr2) {
+  	frequencies2[val] ? frequencies2[val]++ : frequencies2[val] = 1
+  }
+  for (let key in frequencies1) {
+  	if (!(key ** 2 in frequencies2)) {
+	    return false
+    }
+    if (frequencies2[key ** 2] !== frequencies1[key]) {
+      return false
+    }
+  }
+  return true;
+}
 ```
