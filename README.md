@@ -13,6 +13,9 @@ A personal repo to document different approaches to algorithm questions
 10) [Palindrome String Detection](https://github.com/therealtylerwells/algo-stuff#palindrome-string-detection)
 11) [Get nth Fibonacci number](https://github.com/therealtylerwells/algo-stuff#get-nth-fibonacci-number)
 12) [Squared second array checker](https://github.com/therealtylerwells/algo-stuff#squared-second-array-checker)
+13) [Sum Zero](https://github.com/therealtylerwells/algo-stuff#sum-zero)
+14) [Count Unique Values](https://github.com/therealtylerwells/algo-stuff#count-unique-values)
+15) [Max Sum](https://github.com/therealtylerwells/algo-stuff#max-sum)
 
 ## Remove Duplicates
 Assume we need to remove any duplicate characters or words from a string
@@ -223,4 +226,73 @@ const squareChecker = (arr1, arr2) => {
   }
   return true;
 }
+```
+
+# Sum Zero
+
+Write a function that accepted a sorted array of integers and finds the first pair where the sum is zero
+
+```js
+// We use the two pointers approach, one started on the right side and one on the left side, in order to find the sum
+// O(n) time
+const sumZero = (arr) => {
+	let left = 0;
+ 	let right = arr.length - 1;
+	while (left < right) {
+  	let sum = arr[left] + arr[right];
+    	if (sum === 0) {
+    		console.log([arr[left],arr[right]])
+      		return;
+    	}
+    	else if (sum > 0) {
+		right--
+    	} else {
+    		left++
+    }
+ }
+}
+
+sumZero([-4,-3,-2,-1,0,1,2,5])
+```
+
+# Count Unique Values
+Count the number of unique values in an array of integers
+
+```js
+// We once again use two pointers, starting at index 0 and index 1
+const countUniqueValues = (arr) => {
+	let i = 0;
+  for (let j = 1; j < arr.length; j++) {
+  if (arr[i] !== arr[j]) {
+  	i++;
+    arr[i] = arr[j]
+  }
+  }
+  console.log(i + 1)
+}
+
+countUniqueValues([1, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 9, 9])
+```
+
+# Max Sum
+
+Write a function that accepts an array and a number and finds the max sum of a group of that number elements
+
+```js
+const maxSubArraySum = (arr, num) => {
+	let maxSum = 0;
+  let tempSum = 0;
+  if (arr.length < num) return null;
+  for (let i = 0; i < num; i++) {
+  	maxSum += arr[i]
+  }
+  tempSum = maxSum;
+  for (let i = num; i < arr.length; i++) {
+  	tempSum = tempSum - arr[i - num] + arr[i]
+    maxSum = Math.max(tempSum, maxSum)
+  }
+  console.log(maxSum)
+}
+
+maxSubArraySum([2, 6, 9, 2, 1, 8, 5, 6, 3, 18], 3)
 ```
